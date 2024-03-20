@@ -115,8 +115,9 @@ export type GhContextPayload = typeof github.context.payload
 
   let tree: any[] = []
   for (const plantumlCode of plantumlCodes) {
+
     const p = path.format({
-      dir: diagramPath === "." ? plantumlCode.dir : diagramPath,
+      dir: diagramPath.startsWith(".") ? plantumlCode.dir + diagramPath.slice(1) : diagramPath,
       name: plantumlCode.name,
       ext: ".svg",
     })
