@@ -71,7 +71,7 @@ export type GhContextPayload = typeof github.context.payload
   let owner: string
   let repo: string
 
-  console.log("1")
+  core.info("1")
 
   if (!payload.repository && !isDev) {
     throw new Error('Unable to get "repository" from payload.')
@@ -106,7 +106,7 @@ export type GhContextPayload = typeof github.context.payload
     }
   }
 
-  console.log("2")
+  core.info("2")
 
   const commits = await getCommitsFromPayload(octokit, payload)
   let files
@@ -116,19 +116,19 @@ export type GhContextPayload = typeof github.context.payload
     files = ["__tests__/assets/test6.puml"]
   }
 
-  console.log("3")
+  core.info("3")
 
   const plantumlCodes = retrieveCodes(files)
 
   let tree: any[] = []
   for (const plantumlCode of plantumlCodes) {
-    console.log(plantumlCode.dir + " " + diagramPath)
+    core.info(plantumlCode.dir + " " + diagramPath)
     const p = path.format({
       dir: diagramPath.startsWith(".") ? plantumlCode.dir + diagramPath.slice(2) : diagramPath,
       name: plantumlCode.name,
       ext: ".svg",
     })
-    console.log(p.toString())
+    core.info(p.toString())
     const svgPayload: GenerateSvgPayload = { code: plantumlCode.code }
     if (server) {
       svgPayload.server = server
@@ -171,7 +171,7 @@ export type GhContextPayload = typeof github.context.payload
   }
 
   if (tree.length === 0) {
-    console.log(`There are no files to be generated.`)
+    core.info(`There are no files to be generated.`)
     return
   }
 
@@ -198,7 +198,7 @@ export type GhContextPayload = typeof github.context.payload
     force: isDev,
   })
 
-  console.log(
+  core.info(
     `${tree.map((t) => t.path).join("\n")}\nAbove files are generated.`
   )
 })().catch((e) => {
