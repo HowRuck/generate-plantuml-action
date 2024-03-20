@@ -41545,9 +41545,8 @@ const username = core.getInput("username");
 const main_password = core.getInput("password");
 async function generateSvg(payload) {
     const encoded = plantuml_encoder.encode(payload.code);
-    let url = `https://www.plantuml.com/plantuml/png/~1/svg/${encoded}`;
+    let url = `https://www.plantuml.com/plantuml/svg/${encoded}`;
     let headers = {};
-    core.info(url);
     if (payload.server) {
         url = `${payload.server}/svg/${encoded}`;
         if (payload.username && payload.password) {
@@ -41556,6 +41555,8 @@ async function generateSvg(payload) {
         }
     }
     try {
+        core.info(url);
+        core.info(headers.toString());
         const response = await fetch(url, {
             method: "GET",
             headers: headers,
