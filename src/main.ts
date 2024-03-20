@@ -27,13 +27,13 @@ type GenerateSvgPayload = {
 
 async function generateSvg(payload: GenerateSvgPayload) {
   const encoded = plantumlEncoder.encode(payload.code)
-  core.info(encoded)
+  core.info("Encoded: " + encoded)
   let url = `https://www.plantuml.com/plantuml/${encoded}`
   let headers = {}
-
+  core.info("First URL: " + url)
   
   if (payload.server) {
-    core.info(payload.server)
+    core.info("Payload.server: " + payload.server)
     url = `${payload.server}/svg/${encoded}`
 
     if (payload.username && payload.password) {
@@ -42,7 +42,7 @@ async function generateSvg(payload: GenerateSvgPayload) {
     }
   }
   try {
-    core.info(url)
+    core.info("Sent URL: " + url)
     core.info(headers.toString())
     const response = await fetch(url, {
       method: "GET",
