@@ -71,6 +71,8 @@ export type GhContextPayload = typeof github.context.payload
   let owner: string
   let repo: string
 
+  console.log("start!")
+
   if (!payload.repository && !isDev) {
     throw new Error('Unable to get "repository" from payload.')
   }
@@ -115,7 +117,7 @@ export type GhContextPayload = typeof github.context.payload
 
   let tree: any[] = []
   for (const plantumlCode of plantumlCodes) {
-
+    console.log(plantumlCode.dir, diagramPath)
     const p = path.format({
       dir: diagramPath.startsWith(".") ? plantumlCode.dir + diagramPath.slice(2) : diagramPath,
       name: plantumlCode.name,
