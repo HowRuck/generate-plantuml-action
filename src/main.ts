@@ -117,10 +117,11 @@ export type GhContextPayload = typeof github.context.payload
   for (const plantumlCode of plantumlCodes) {
 
     const p = path.format({
-      dir: diagramPath.startsWith(".") ? plantumlCode.dir + diagramPath.slice(1) : diagramPath,
+      dir: diagramPath.startsWith(".") ? plantumlCode.dir + diagramPath.slice(2) : diagramPath,
       name: plantumlCode.name,
       ext: ".svg",
     })
+    console.log(p.toString())
     const svgPayload: GenerateSvgPayload = { code: plantumlCode.code }
     if (server) {
       svgPayload.server = server
