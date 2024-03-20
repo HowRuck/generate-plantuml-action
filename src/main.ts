@@ -71,7 +71,7 @@ export type GhContextPayload = typeof github.context.payload
   let owner: string
   let repo: string
 
-  console.log("start!")
+  core.info("1")
 
   if (!payload.repository && !isDev) {
     throw new Error('Unable to get "repository" from payload.')
@@ -106,6 +106,8 @@ export type GhContextPayload = typeof github.context.payload
     }
   }
 
+  core.info("2")
+
   const commits = await getCommitsFromPayload(octokit, payload)
   let files
   if (!isDev) {
@@ -113,6 +115,9 @@ export type GhContextPayload = typeof github.context.payload
   } else {
     files = ["__tests__/assets/test6.puml"]
   }
+
+  core.info("3")
+
   const plantumlCodes = retrieveCodes(files)
 
   let tree: any[] = []
