@@ -1,5 +1,5 @@
 @startuml
-'yeet
+'yeet2
 [First component]
 [Another component] as Comp2  
 component Comp3
