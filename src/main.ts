@@ -170,7 +170,7 @@ export type GhContextPayload = typeof github.context.payload
     }
   }
 
-  core.info("This HAS to run")
+  core.info(`This HAS to run.`)
   if (tree.length === 0) {
     core.info(`There are no files to be generated.`)
     return
