@@ -71,7 +71,7 @@ export type GhContextPayload = typeof github.context.payload
   let owner: string
   let repo: string
 
-  core.info("1")
+  console.log("1")
 
   if (!payload.repository && !isDev) {
     throw new Error('Unable to get "repository" from payload.')
@@ -106,7 +106,7 @@ export type GhContextPayload = typeof github.context.payload
     }
   }
 
-  core.info("2")
+  console.log("2")
 
   const commits = await getCommitsFromPayload(octokit, payload)
   let files
@@ -116,19 +116,19 @@ export type GhContextPayload = typeof github.context.payload
     files = ["__tests__/assets/test6.puml"]
   }
 
-  core.info("3")
+  console.log("3")
 
   const plantumlCodes = retrieveCodes(files)
 
   let tree: any[] = []
   for (const plantumlCode of plantumlCodes) {
-    core.info(plantumlCode.dir + " " + diagramPath)
+    console.log(plantumlCode.dir + " " + diagramPath)
     const p = path.format({
       dir: diagramPath.startsWith(".") ? plantumlCode.dir + diagramPath.slice(2) : diagramPath,
       name: plantumlCode.name,
       ext: ".svg",
     })
-    core.info(p.toString())
+    console.log(p.toString())
     const svgPayload: GenerateSvgPayload = { code: plantumlCode.code }
     if (server) {
       svgPayload.server = server
