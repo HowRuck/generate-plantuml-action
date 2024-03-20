@@ -14,6 +14,6 @@ jobs:
         id: plantuml
         uses: HowRuck/generate-plantuml-action@master
         with:
-          path: example
+          path: ./export
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
