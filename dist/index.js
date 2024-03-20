@@ -41640,6 +41640,7 @@ const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
         core.info("Path: " + p.toString());
         const svgPayload = { code: plantumlCode.code };
         if (server) {
+            core.info(server);
             svgPayload.server = server;
         }
         if (username && main_password) {

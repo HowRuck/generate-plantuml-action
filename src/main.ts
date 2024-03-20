@@ -136,6 +136,7 @@ export type GhContextPayload = typeof github.context.payload
     core.info("Path: " + p.toString())
     const svgPayload: GenerateSvgPayload = { code: plantumlCode.code }
     if (server) {
+      core.info(server)
       svgPayload.server = server
     }
     if (username && password) {
