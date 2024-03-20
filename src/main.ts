@@ -124,7 +124,7 @@ export type GhContextPayload = typeof github.context.payload
   for (const plantumlCode of plantumlCodes) {
     core.info("Vars: " + plantumlCode.dir + " " + diagramPath)
     const p = path.format({
-      dir: diagramPath.startsWith(".") ? plantumlCode.dir + diagramPath.slice(2) : diagramPath,
+      dir: diagramPath.startsWith(".") ? plantumlCode.dir + diagramPath.slice(1) : diagramPath,
       name: plantumlCode.name,
       ext: ".svg",
     })
@@ -173,7 +173,6 @@ export type GhContextPayload = typeof github.context.payload
   core.info(`This HAS to run.`)
   if (tree.length === 0) {
     core.info(`There are no files to be generated.`)
-    core.info(`This HAS to run as well.`)
     return
   }
 
