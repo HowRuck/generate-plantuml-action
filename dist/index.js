@@ -41545,6 +41545,7 @@ const username = core.getInput("username");
 const main_password = core.getInput("password");
 async function generateSvg(payload) {
     const encoded = plantuml_encoder.encode(payload.code);
+    core.info(encoded);
     let url = `https://www.plantuml.com/plantuml/${encoded}`;
     let headers = {};
     if (payload.server) {
