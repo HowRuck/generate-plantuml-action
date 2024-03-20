@@ -10,7 +10,7 @@ inputs:
     default: 'Render PlantUML files'
   server:
     description: 'the plantuml server url'
-    default: 'http://www.plantuml.com/plantuml/svg/${code}'
+    default: 'https://www.plantuml.com/plantuml'
   username:
     description: 'the username for basic authentication'
     default: ''
